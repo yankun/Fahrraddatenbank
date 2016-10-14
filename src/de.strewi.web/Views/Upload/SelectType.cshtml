@@ -1,0 +1,27 @@
+@{
+	ViewData["Title"] = "Neuen Eintrag erstellen";
+}
+
+<h2>Neuen Eintrag erstellen</h2>
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<form class="form-horizontal" method="post">
+			<div class="form-group form-group-sm">
+				<label class="col-md-2 control-label">Typ ausw&auml;hlen</label>
+				<div class="col-md-4">
+					<select name="type" class="form-control">
+						<option value="@nameof(Manufacturer)">Hersteller</option>
+						<option value="hertsellerkatalog">Katalog - Hersteller</option>
+						<option value="zubehoerkatalog">Katalog - Zubeh&ouml;r</option>
+						<option value="@nameof(HeadBadge)">Steuerkopfschild</option>
+					</select>
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="btn btn-primary btn-sm">Abschicken</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

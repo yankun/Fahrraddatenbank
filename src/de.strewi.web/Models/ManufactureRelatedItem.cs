@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,9 +9,10 @@ namespace de.strewi.web.Models
 {
     public abstract class ManufactureRelatedItem : BaseModel
     {
-		[ForeignKey(nameof(ManufactureId))]
-		public virtual Manufacture Manufacture { get; set; }
+		[ForeignKey(nameof(ManufacturerId))]
+		public virtual Manufacturer Manufacturer { get; set; }
 
-		public int ManufactureId { get; set; }
+		[Display(Name = nameof(ManufacturerId), ResourceType = typeof(Resources.PropertyNames))]
+		public int ManufacturerId { get; set; }
 	}
 }

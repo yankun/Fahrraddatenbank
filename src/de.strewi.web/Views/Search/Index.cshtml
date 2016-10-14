@@ -1,0 +1,33 @@
+﻿@model de.strewi.web.Models.SearchViewModels.IndexViewModel
+
+@{
+	ViewData["Title"] = "Suche";
+}
+
+<div class="row">
+	<div class="col-sm-12">
+		<div class=jumbotron>
+			<h2>Willkommen</h2>
+			<p>Herzlich willkommen in der Fahrraddatenbank des Historischen Fahrräder e.V. Diese Datenbank wird nach und nach komplettiert mit Informationen zu Herstellern und der Geschichte des Fahrrades. Um zu beginnen, gebe einfach deinen Suchbegriff ein und filtere anschließend das Ergebnis.</p>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-sm-12">
+		<form class="form-horizontal" method="post">
+			<div class="form-group">
+				<label class="col-md-2 control-label">Suche</label>
+				<div class="col-md-8">
+					<input asp-for="QueryTerm" autocomplete="off" id="search-box" class="form-control" placeholder="zum Beispiel Welt-Rad..." />
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="btn btn-primary">Abschicken</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts {
+	<script src="~/js/SearchIndex.js" type="text/javascript"></script>
+}

@@ -1,0 +1,97 @@
+﻿@model de.strewi.web.Models.ManufacturerViewModels.CreateViewModel
+
+@{
+	ViewData["Title"] = "Hersteller erstellen";
+}
+
+<h2>Erstellen</h2>
+
+<form asp-action="Create">
+	<div class="form-horizontal">
+		<h4>Hersteller</h4>
+		<hr />
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<div class="form-group">
+			<label asp-for="Name" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="FoundedAt" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<select asp-for="FoundedAt" class="form-control">
+					<option>Optional ausw&auml;hlen</option>
+					@for (var i = 1817; i <= DateTime.Now.Year; i++) {
+						<option value="@i">@i</option>
+
+					}
+				</select>
+				<span asp-validation-for="FoundedAt" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="StoppedProductionAt" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<select asp-for="StoppedProductionAt" class="form-control">
+					<option>Optional ausw&auml;hlen</option>
+					@for (var i = 1817; i <= DateTime.Now.Year; i++) {
+						<option value="@i">@i</option>
+
+					}
+				</select>
+				<span asp-validation-for="StoppedProductionAt" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="City" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<input asp-for="City" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="OvertakenById" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<input asp-for="OvertakenById" type="text" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="OvertakenAt" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<select asp-for="OvertakenAt" class="form-control">
+					<option>Optional ausw&auml;hlen</option>
+					@for (var i = 1817; i <= DateTime.Now.Year; i++) {
+						<option value="@i">@i</option>
+
+					}
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="History" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<textarea data-provide="markdown" asp-for="History" rows="10" class="form-control">
+				</textarea>
+				<span asp-validation-for="History" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="UploadImage" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<input asp-for="UploadImage" class="form-control" />
+				<span asp-validation-for="UploadImage" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-8">
+				<input type="submit" value="Erstellen" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+</form>
+
+@section scripts {
+	<script type="text/javascript" src="~/js/ManufacturerCreate.js"></script>
+}
+

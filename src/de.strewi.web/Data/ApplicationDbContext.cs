@@ -52,7 +52,7 @@ namespace de.strewi.web.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-		public DbSet<Manufacture> Manufactures { get; set; }
+		public DbSet<Manufacturer> Manufactures { get; set; }
 		public DbSet<HeadBadge> Headbadges { get; set; }
 		public DbSet<CrankAxle> CrankAxles { get; set; }
 		public DbSet<BearingShell> BearingShells { get; }

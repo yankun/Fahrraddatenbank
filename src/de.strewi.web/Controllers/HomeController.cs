@@ -20,7 +20,7 @@ namespace de.strewi.web.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult Imprint()
         {
             ViewData["Message"] = "Your contact page.";
 

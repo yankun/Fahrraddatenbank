@@ -13,7 +13,7 @@ namespace de.strewi.web.Data.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")
+                .HasAnnotation("ProductVersion", "1.0.1")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("de.strewi.web.Models.ApplicationUser", b =>
@@ -84,7 +84,7 @@ namespace de.strewi.web.Data.Migrations
 
                     b.Property<bool>("IsThreaded");
 
-                    b.Property<int>("ManufactureId");
+                    b.Property<int>("ManufacturerId");
 
                     b.Property<DateTime?>("ModifiedAt");
 
@@ -100,7 +100,7 @@ namespace de.strewi.web.Data.Migrations
 
                     b.HasIndex("CreatedByID");
 
-                    b.HasIndex("ManufactureId");
+                    b.HasIndex("ManufacturerId");
 
                     b.HasIndex("ModifiedByID");
 
@@ -116,7 +116,7 @@ namespace de.strewi.web.Data.Migrations
 
                     b.Property<string>("CreatedByID");
 
-                    b.Property<int>("ManufactureId");
+                    b.Property<int>("ManufacturerId");
 
                     b.Property<DateTime?>("ModifiedAt");
 
@@ -132,7 +132,7 @@ namespace de.strewi.web.Data.Migrations
 
                     b.HasIndex("CreatedByID");
 
-                    b.HasIndex("ManufactureId");
+                    b.HasIndex("ManufacturerId");
 
                     b.HasIndex("ModifiedByID");
 
@@ -148,11 +148,11 @@ namespace de.strewi.web.Data.Migrations
 
                     b.Property<string>("CreatedByID");
 
-                    b.Property<double>("HorizontalDistance");
+                    b.Property<double?>("HorizontalDistance");
 
                     b.Property<string>("Image");
 
-                    b.Property<int>("ManufactureId");
+                    b.Property<int>("ManufacturerId");
 
                     b.Property<DateTime?>("ModifiedAt");
 
@@ -160,19 +160,22 @@ namespace de.strewi.web.Data.Migrations
 
                     b.Property<int>("MountingPoints");
 
-                    b.Property<string>("Notes");
+                    b.Property<string>("Notes")
+                        .HasAnnotation("MaxLength", 500);
 
-                    b.Property<DateTime>("ValidForm");
+                    b.Property<string>("UsedColors");
 
-                    b.Property<DateTime>("ValidTo");
+                    b.Property<DateTime?>("ValidFrom");
 
-                    b.Property<double>("VerticalDistance");
+                    b.Property<DateTime?>("ValidTo");
+
+                    b.Property<double?>("VerticalDistance");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CreatedByID");
 
-                    b.HasIndex("ManufactureId");
+                    b.HasIndex("ManufacturerId");
 
                     b.HasIndex("ModifiedByID");
 
@@ -184,9 +187,8 @@ namespace de.strewi.web.Data.Migrations
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("City");
-
-                    b.Property<string>("Country");
+                    b.Property<string>("City")
+                        .HasAnnotation("MaxLength", 255);
 
                     b.Property<DateTime>("CreatedAt");
 
@@ -194,17 +196,28 @@ namespace de.strewi.web.Data.Migrations
 
                     b.Property<DateTime>("FoundedAt");
 
+                    b.Property<string>("History")
+                        .HasColumnType("ntext");
+
                     b.Property<DateTime?>("ModifiedAt");
 
                     b.Property<string>("ModifiedByID");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 255);
+
+                    b.Property<int?>("OvertakenById");
+
+                    b.Property<DateTime>("StoppedProductionAt");
 
                     b.HasKey("ID");
 
                     b.HasIndex("CreatedByID");
 
                     b.HasIndex("ModifiedByID");
+
+                    b.HasIndex("OvertakenById");
 
                     b.ToTable("Manufactures");
                 });
@@ -322,9 +335,9 @@ namespace de.strewi.web.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CreatedByID");
 
-                    b.HasOne("de.strewi.web.Models.Manufacture", "Manufacture")
+                    b.HasOne("de.strewi.web.Models.Manufacture", "Manufacturer")
                         .WithMany()
-                        .HasForeignKey("ManufactureId")
+                        .HasForeignKey("ManufacturerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("de.strewi.web.Models.ApplicationUser", "ModifiedBy")
@@ -338,9 +351,9 @@ namespace de.strewi.web.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CreatedByID");
 
-                    b.HasOne("de.strewi.web.Models.Manufacture", "Manufacture")
+                    b.HasOne("de.strewi.web.Models.Manufacture", "Manufacturer")
                         .WithMany()
-                        .HasForeignKey("ManufactureId")
+                        .HasForeignKey("ManufacturerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("de.strewi.web.Models.ApplicationUser", "ModifiedBy")
@@ -354,9 +367,9 @@ namespace de.strewi.web.Data.Migrations
                         .WithMany()
                         .HasForeignKey("CreatedByID");
 
-                    b.HasOne("de.strewi.web.Models.Manufacture", "Manufacture")
+                    b.HasOne("de.strewi.web.Models.Manufacture", "Manufacturer")
                         .WithMany()
-                        .HasForeignKey("ManufactureId")
+                        .HasForeignKey("ManufacturerId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("de.strewi.web.Models.ApplicationUser", "ModifiedBy")
@@ -373,6 +386,10 @@ namespace de.strewi.web.Data.Migrations
                     b.HasOne("de.strewi.web.Models.ApplicationUser", "ModifiedBy")
                         .WithMany()
                         .HasForeignKey("ModifiedByID");
+
+                    b.HasOne("de.strewi.web.Models.Manufacture", "OvertakenBy")
+                        .WithMany()
+                        .HasForeignKey("OvertakenById");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

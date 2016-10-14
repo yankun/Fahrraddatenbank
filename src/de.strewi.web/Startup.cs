@@ -81,7 +81,7 @@ namespace de.strewi.web
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=Search}/{action=Index}/{id?}");
             });
         }
     }

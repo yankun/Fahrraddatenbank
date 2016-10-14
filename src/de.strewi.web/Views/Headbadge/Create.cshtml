@@ -1,0 +1,104 @@
+@model de.strewi.web.Models.HeadbadgeViewModels.CreateViewModel
+
+@{
+	ViewData["Title"] = "Steuerkopfschild erstellen";
+}
+
+<h2>Erstellen</h2>
+
+<form asp-action="Create">
+	<div class="form-horizontal">
+		<h4>Steuerkopfschild</h4>
+		<hr />
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		<div class="form-group">
+			<label asp-for="MountingPoints" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<select asp-for="MountingPoints" class="form-control">
+					<option>Horizontal</option>
+					<option>Vertikal</option>
+					<option>Gekreuzt</option>
+					<option>Dreieck</option>
+					<option>Viereck</option>
+				</select>
+				<span asp-validation-for="MountingPoints" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="HorizontalDistance" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<div class="input-group">
+					<input asp-for="HorizontalDistance" placeholder="@(0.0.ToString("0.00"))" class="form-control" />
+					<span class="input-group-addon">mm</span>
+				</div>
+				<span asp-validation-for="HorizontalDistance" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="VerticalDistance" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<div class="input-group">
+					<input asp-for="VerticalDistance" placeholder="@(0.0.ToString("0.00"))" class="form-control" />
+					<span class="input-group-addon">mm</span>
+				</div>
+				<span asp-validation-for="VerticalDistance" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="ManufacturerId" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<input asp-for="ManufacturerId" type="text" autocomplete="off" class="form-control" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="Notes" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<input asp-for="Notes" class="form-control" />
+				<span asp-validation-for="Notes" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="ValidFrom" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<select asp-for="ValidFrom" class="form-control">
+					<option>Optional ausw&auml;hlen</option>
+					@for(var i = 1817; i <= DateTime.Now.Year; i++) {
+						<option value="@i">@i</option>
+
+					}
+				</select>
+				<span asp-validation-for="ValidFrom" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="ValidTo" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<select asp-for="ValidTo" class="form-control">
+					<option>Optional ausw&auml;hlen</option>
+					@for (var i = 1817; i <= DateTime.Now.Year; i++) {
+						<option value="@i">@i</option>
+
+					}
+				</select>
+				<span asp-validation-for="ValidTo" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label asp-for="UploadImage" class="col-md-2 control-label"></label>
+			<div class="col-md-8">
+				<input asp-for="UploadImage" class="form-control" />
+				<span asp-validation-for="UploadImage" class="text-danger" />
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-8">
+				<input type="submit" value="Erstellen" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+</form>
+
+@section scripts {
+	<script type="text/javascript" src="~/js/HeadbadgeCreate.js"></script>
+}
+

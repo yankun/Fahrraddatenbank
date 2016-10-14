@@ -1,0 +1,99 @@
+@model de.strewi.web.Models.SearchViewModels.ResultsViewModel
+
+@{
+	ViewData["Title"] = "Ergebnisse für " + Model.SearchTerm;
+}
+
+<h2>Suchergebnisse f&uuml;r @Model.SearchTerm</h2>
+
+<div class="row">
+	<div class="col-md-3">
+		<form class="form-horizontal">
+			<h3>Filter</h3>
+			<h4>Kategorien</h4>
+			<div class="list-group">
+				<a href="#" class="list-group-item"><span class="badge">1</span>Kataloge</a>
+				<a href="#" class="list-group-item"><span class="badge">1</span>Fahrradmodelle</a>
+				<a href="@Url.Action("Highlighted")" class="list-group-item"><span class="badge">2</span>Steuerkopfschilder</a>
+				<a href="#" class="list-group-item"><span class="badge">2</span>Kettenbl&auml;tter</a>
+			</div>
+			<h4>Zeitraum</h4>
+			<div class="form-group form-group-sm">
+				<label class="col-md-2 control-label" for="from">Von</label>
+				<div class="col-md-10">
+					<select id="from" class="form-control">
+						<option>1817</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group form-group-sm">
+				<label class="col-md-2 control-label" for="until">Bis</label>
+				<div class="col-md-10">
+					<select id="until" class="form-control">
+						<option>2016</option>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="col-md-9">
+		<div class="row">
+			<div class="col-md-4">
+				<img src="~/images/mocks/weltrad_ba.png" alt="" class="img-thumbnail" />
+				<h4>
+					Welt-Rad Modell Ba
+				</h4>
+				<p>
+					Modell von 1924
+				</p>
+			</div>
+			<div class="col-md-4">
+				<img src="~/images/mocks/kettenblatt.png" alt="" class="img-thumbnail" />
+				<h4>
+					Kettenblatt
+				</h4>
+				<p>
+					Kettenblatt von 1923
+				</p>
+			</div>
+			<div class="col-md-4">
+				<img src="~/images/mocks/kettenblatt2.png" alt="" class="img-thumbnail" />
+				<h4>
+					Kettenblatt
+				</h4>
+				<p>
+					Kettenblatt von 1925
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				<img src="~/images/mocks/katalog_cover.png" alt="" class="img-thumbnail" />
+				<h4>
+					Welt-Rad Katalog
+				</h4>
+				<p>
+					Katalog von 1924
+				</p>
+			</div>
+			<div class="col-md-4">
+				<img src="~/images/mocks/sks.png" alt="" class="img-thumbnail" />
+				<h4>
+					Welt-Rad Steuerkopfschild
+				</h4>
+				<p>
+					Steuerkpfschild von 1923
+				</p>
+			</div>
+			<div class="col-md-4">
+				<img src="~/images/mocks/sks2.png" alt="" class="img-thumbnail" />
+				<h4>
+					Welt-Rad Steuerkopfschild
+				</h4>
+				<p>
+					Steuerkpfschild von 1925
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
