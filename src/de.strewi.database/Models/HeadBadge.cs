@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace de.strewi.web.Models
+namespace de.strewi.database.Models
 {
     public class HeadBadge : ManufactureRelatedItem
     {
@@ -23,7 +23,7 @@ namespace de.strewi.web.Models
 		[Display(Name = nameof(VerticalDistance), ResourceType = typeof(Resources.PropertyNames))]
 		public double? VerticalDistance { get; set; }
 
-		[MaxLength(500, ErrorMessage = "Der Hinweise dürfen maximal 500 Zeichen lang sein.")]
+		[MaxLength(500, ErrorMessageResourceName = "NotesErrorMessage", ErrorMessageResourceType = typeof(Resources.ErrorMessages))]
 		[Display(Name = nameof(Notes), ResourceType = typeof(Resources.PropertyNames))]
 		public string Notes { get; set; }
 
@@ -32,5 +32,8 @@ namespace de.strewi.web.Models
 
 		[Display(Name = nameof(MountingPoints), ResourceType = typeof(Resources.PropertyNames))]
 		public MountingPoints MountingPoints { get; set; }
+
+        [Display(Name = nameof(NumberOfMountingPoints), ResourceType = typeof(Resources.PropertyNames))]
+        public int? NumberOfMountingPoints { get; set; }
     }
 }

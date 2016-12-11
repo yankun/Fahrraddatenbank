@@ -1,0 +1,49 @@
+@{
+	ViewData["Title"] = "Neuen Eintrag erstellen";
+}
+
+<h2>W&auml;hle aus, was du Erstellen m&ouml;chtest</h2>
+
+
+<div class="row">
+	<div class="col-sm-12">
+        <p>
+            Du hast die Wahl zwischen mehreren Dingen, die du anlegen kannst. Sollte der gew&uuml;nschte Gegenstand nicht vorhanden sein, schreibe uns an und wir &uuml;berlegen uns, wie wir dir helfen k&ouml;nnen.
+            <br />
+            Nach und nach werden wir selber neue Gegenst&Auml;nde aufnehmen, die unsere Datenbank verwalten kann.
+        </p>
+		<form class="form-horizontal" method="get">
+			<div class="form-group form-group-sm">
+				<div class="col-md-4">
+					<select name="type" class="form-control">
+						<option value="@nameof(de.strewi.database.Models.Manufacturer)">Hersteller</option>
+						<option value="hertsellerkatalog">Katalog - Hersteller</option>
+						<option value="zubehoerkatalog">Katalog - Zubeh&ouml;r</option>
+						<option value="@nameof(de.strewi.database.Models.HeadBadge)">Steuerkopfschild</option>
+					</select>
+				</div>
+				<div class="col-sm-2">
+					<button type="submit" class="btn btn-primary btn-sm">Abschicken</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="well well-sm creation-container">
+            <a asp-route-type="@nameof(de.strewi.database.Models.Manufacturer)">
+                <img class="creation-template" alt="Hersteller" src="~/images/creation/manufacturer_template.png" />
+                <h4>Hersteller</h4>
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="well well-sm creation-container">
+            <a asp-route-type="@nameof(de.strewi.database.Models.HeadBadge)">
+                <img class="creation-template" alt="Steuerkopfschild" src="~/images/creation/sks_template.png" />
+                <h4>Steuerkopfschild</h4>
+            </a>
+        </div>
+    </div>
+</div>

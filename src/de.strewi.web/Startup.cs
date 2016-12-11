@@ -9,9 +9,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using de.strewi.web.Data;
 using de.strewi.web.Models;
 using de.strewi.web.Services;
+using de.strewi.database;
+using de.strewi.database.Models;
 
 namespace de.strewi.web
 {

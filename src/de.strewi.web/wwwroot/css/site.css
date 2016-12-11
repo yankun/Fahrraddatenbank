@@ -32,3 +32,11 @@ body {
 .md-editor>textarea {
 	padding: 12px 16px;
 }
+
+.creation-container {
+    text-align: center;
+}
+
+.creation-template {
+    max-width: 100%;
+}

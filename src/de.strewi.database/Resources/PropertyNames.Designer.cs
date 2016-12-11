@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace de.strewi.web.Resources {
+namespace de.strewi.database.Resources {
     using System;
     using System.Reflection;
     
@@ -38,7 +38,7 @@ namespace de.strewi.web.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("de.strewi.web.Resources.PropertyNames", typeof(PropertyNames).GetTypeInfo().Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("de.strewi.database.Resources.PropertyNames", typeof(PropertyNames).GetTypeInfo().Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -128,6 +128,15 @@ namespace de.strewi.web.Resources {
         public static string Notes {
             get {
                 return ResourceManager.GetString("Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Anzahl der Bohrungen.
+        /// </summary>
+        public static string NumberOfMountingPoints {
+            get {
+                return ResourceManager.GetString("NumberOfMountingPoints", resourceCulture);
             }
         }
         

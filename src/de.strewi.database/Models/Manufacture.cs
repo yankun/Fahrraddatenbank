@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace de.strewi.web.Models
+namespace de.strewi.database.Models
 {
 	public class Manufacturer : BaseModel
 	{

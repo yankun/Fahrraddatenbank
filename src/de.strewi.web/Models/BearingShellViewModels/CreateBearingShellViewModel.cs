@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using de.strewi.database.Models;
 
 namespace de.strewi.web.Models.BearingShellViewModels
 {

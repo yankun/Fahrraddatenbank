@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using de.strewi.web.Models;
 using de.strewi.web.Models.ManageViewModels;
 using de.strewi.web.Services;
+using de.strewi.database.Models;
 
 namespace de.strewi.web.Controllers
 {

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using de.strewi.web.Models;
 using System.Threading;
+using de.strewi.database.Models;
 
-namespace de.strewi.web.Data
+namespace de.strewi.database
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

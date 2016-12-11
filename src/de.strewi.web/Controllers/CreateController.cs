@@ -4,20 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using de.strewi.web.Models;
 using Microsoft.AspNetCore.Mvc;
+using de.strewi.database.Models;
 
 namespace de.strewi.web.Controllers
 {
-	public class UploadController : Controller
+	public class CreateController : Controller
 	{
 		[HttpGet]
-		public IActionResult SelectType()
-		{
-			return View();
-		}
-
-		[HttpPost]
 		public IActionResult SelectType(string type)
 		{
+            if(string.IsNullOrWhiteSpace(type))
+            {
+                return View();
+            }
+
 			switch(type) {
 				case nameof(HeadBadge):
 					return RedirectToAction("Create", nameof(HeadBadge), new { type = type });

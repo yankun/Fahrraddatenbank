@@ -15,15 +15,25 @@
 			<label asp-for="MountingPoints" class="col-md-2 control-label"></label>
 			<div class="col-md-8">
 				<select asp-for="MountingPoints" class="form-control">
-					<option>Horizontal</option>
-					<option>Vertikal</option>
-					<option>Gekreuzt</option>
-					<option>Dreieck</option>
-					<option>Viereck</option>
+					<option value="@de.strewi.database.Models.MountingPoints.HonrizontalMountingPoints">Horizontal</option>
+					<option value="@de.strewi.database.Models.MountingPoints.VerticalMountingPoints">Vertikal</option>
+					<option value="@de.strewi.database.Models.MountingPoints.CrossMountingPoints">Gekreuzt</option>
+					<option value="@de.strewi.database.Models.MountingPoints.UpSideTriangleMountingPoints">Dreieck</option>
+					<option value="@de.strewi.database.Models.MountingPoints.SquareMountingPoints">Viereck</option>
 				</select>
 				<span asp-validation-for="MountingPoints" class="text-danger" />
 			</div>
 		</div>
+        <div class="form-group">
+            <label asp-for="NumberOfMountingPoints" class="col-md-2 control-label"></label>
+            <div class="col-md-8">
+                <div class="input-group">
+                    <input asp-for="NumberOfMountingPoints" placeholder="2" class="form-control" />
+                    <span class="input-group-addon">mm</span>
+                </div>
+                <span asp-validation-for="NumberOfMountingPoints" class="text-danger" />
+            </div>
+        </div>
 		<div class="form-group">
 			<label asp-for="HorizontalDistance" class="col-md-2 control-label"></label>
 			<div class="col-md-8">

@@ -141,6 +141,9 @@
   <data name="Notes" xml:space="preserve">
     <value>Hinweise</value>
   </data>
+  <data name="NumberOfMountingPoints" xml:space="preserve">
+    <value>Anzahl der Bohrungen</value>
+  </data>
   <data name="OvertakenAt" xml:space="preserve">
     <value>Übernommen in</value>
   </data>
