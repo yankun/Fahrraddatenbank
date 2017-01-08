@@ -13,9 +13,15 @@ namespace de.strewi.database.Models
         [Required]
         public string Firstname { get; set; }
 
-        [Required]
         public string Lastname { get; set; }
 
-        public int? MemberNumber { get; set; }
+        [Required]
+        public int MemberNumber { get; set; }
+
+        public int Points { get; set; }
+
+        public bool IsActivated { get; set; }
+
+        public DateTime RegisteredAt { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "de.strewi.Configuration": "1.0.0-*",
+    "de.strewi.database": "1.0.0-*",
+    "Microsoft.Azure.Search": "3.0.1",
+    "NETStandard.Library": "1.*"
+  },
+
+  "frameworks": {
+    "netcoreapp1.1": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  },
+  "netcoreapp1.1": {
+    "imports": "dnxcore50"
+  }
+}
+

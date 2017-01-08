@@ -81,6 +81,10 @@ namespace de.strewi.web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "admin",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Search}/{action=Index}/{id?}");
             });

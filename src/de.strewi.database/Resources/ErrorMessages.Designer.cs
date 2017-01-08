@@ -60,11 +60,29 @@ namespace de.strewi.database.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Das Feld das maximal {0} Zeichen enthalten..
+        /// </summary>
+        public static string GenericLengthError {
+            get {
+                return ResourceManager.GetString("GenericLengthError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Hinweise dürfen maximal {0} Zeichen lang sein..
         /// </summary>
         public static string NotesErrorMessage {
             get {
                 return ResourceManager.GetString("NotesErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Die Einagbe muss folgendes Format haben [~+-]1900[-1910]..
+        /// </summary>
+        public static string TimePeriod {
+            get {
+                return ResourceManager.GetString("TimePeriod", resourceCulture);
             }
         }
     }

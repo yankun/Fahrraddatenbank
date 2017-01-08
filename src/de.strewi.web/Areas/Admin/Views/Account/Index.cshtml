@@ -1,0 +1,26 @@
+﻿@model de.strewi.web.Areas.Admin.Models.AccountPagingViewModel
+
+<table class="table table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>Mitgliedsnummer</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Registriert am</th>
+            <th>Aktiviert</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var account in Model.PageItems)
+        {
+            <tr>
+                <td>@account.MemberNumber</td>
+                <td><a asp-area="Admin" asp-controller="Account" asp-action="Details" asp-route-id="@account.Id">@account.Email</a></td>
+                <td>@account.Firstname @account.Lastname</td>
+                <td>@account.RegisteredAt</td>
+                <td><input type="checkbox" readonly asp-for="@account.IsActivated" /></td>
+            </tr>
+
+        }
+    </tbody>
+</table>

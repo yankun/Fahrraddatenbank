@@ -37,8 +37,9 @@
     "Microsoft.VisualStudio.Web.CodeGeneration.Tools": "1.1.0-preview4-final",
     "System.ComponentModel.Annotations": "4.3.0",
     "System.ComponentModel.Primitives": "4.3.0",
-    "Markdig": "0.10.*",
-    "de.strewi.database": "1.0.0-*"
+    "Markdig": "0.10.4",
+    "de.strewi.database": "1.0.0-*",
+    "NETStandard.Library": "1.6.1"
   },
 
   "tools": {

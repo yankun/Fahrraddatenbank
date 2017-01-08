@@ -54,6 +54,13 @@
 				<span asp-validation-for="VerticalDistance" class="text-danger" />
 			</div>
 		</div>
+        <div class="form-group">
+            <label asp-for="HeadbadgeMaterial" class="col-md-2 control-label"></label>
+            <div class="col-md-8">
+                @Html.EditorFor(m => m.HeadbadgeMaterial)
+                <span asp-validation-for="HeadbadgeMaterial" class="text-danger" />
+            </div>
+        </div>
 		<div class="form-group">
 			<label asp-for="ManufacturerId" class="col-md-2 control-label"></label>
 			<div class="col-md-8">

@@ -78,6 +78,15 @@ namespace de.strewi.database.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Material.
+        /// </summary>
+        public static string HeadbadgeMaterial {
+            get {
+                return ResourceManager.GetString("HeadbadgeMaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Geschichte.
         /// </summary>
         public static string History {
@@ -164,6 +173,15 @@ namespace de.strewi.database.Resources {
         public static string StoppedProductionAt {
             get {
                 return ResourceManager.GetString("StoppedProductionAt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Zeitspanne.
+        /// </summary>
+        public static string TimePeriod {
+            get {
+                return ResourceManager.GetString("TimePeriod", resourceCulture);
             }
         }
         

@@ -56,5 +56,7 @@ namespace de.strewi.database
 		public DbSet<HeadBadge> Headbadges { get; set; }
 		public DbSet<CrankAxle> CrankAxles { get; set; }
 		public DbSet<BearingShell> BearingShells { get; }
+        public DbSet<ValueChange> ValueChanges { get; }
+        public DbSet<ModerationItem> ModerationQueue { get; }
     }
 }

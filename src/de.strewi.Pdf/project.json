@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "iTextSharp.LGPLv2.Core": "1.*",
+    "NETStandard.Library": "1.*"
+  },
+
+  "frameworks": {
+    "netcoreapp1.1": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
+    }
+  },
+  "netcoreapp1.1": {
+    "imports": "dnxcore50"
+  }
+}

@@ -117,7 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="GenericLengthError" xml:space="preserve">
+    <value>Das Feld das maximal {0} Zeichen enthalten.</value>
+  </data>
   <data name="NotesErrorMessage" xml:space="preserve">
     <value>Hinweise dürfen maximal {0} Zeichen lang sein.</value>
+  </data>
+  <data name="TimePeriod" xml:space="preserve">
+    <value>Die Einagbe muss folgendes Format haben [~+-]1900[-1910].</value>
   </data>
 </root>

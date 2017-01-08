@@ -26,7 +26,7 @@ namespace de.strewi.database.Models
 		public DateTime StoppedProductionAt { get; set; }
 
 		[Display(Name = nameof(OvertakenById), ResourceType = typeof(Resources.PropertyNames))]
-		public int? OvertakenById { get; set; }
+		public Guid? OvertakenById { get; set; }
 
 		[ForeignKey(nameof(OvertakenById))]
 		public Manufacturer OvertakenBy { get; set; }

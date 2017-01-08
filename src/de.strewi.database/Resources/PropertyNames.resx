@@ -123,6 +123,9 @@
   <data name="FoundedAt" xml:space="preserve">
     <value>Beginn der Produktion</value>
   </data>
+  <data name="HeadbadgeMaterial" xml:space="preserve">
+    <value>Material</value>
+  </data>
   <data name="History" xml:space="preserve">
     <value>Geschichte</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="StoppedProductionAt" xml:space="preserve">
     <value>Ende der Produktion</value>
+  </data>
+  <data name="TimePeriod" xml:space="preserve">
+    <value>Zeitspanne</value>
   </data>
   <data name="UploadImage" xml:space="preserve">
     <value>Bild</value>

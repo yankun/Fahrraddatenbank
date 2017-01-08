@@ -1,0 +1,13 @@
+﻿@model de.strewi.database.Models.HeadbadgeMaterial
+
+@using de.strewi.database;
+@using de.strewi.database.Models;
+
+<select class="form-control" multiple name="@ViewData.TemplateInfo.HtmlFieldPrefix">
+    <option value="@HeadbadgeMaterial.Unknown">@de.strewi.database.Resources.EnumNames.Unknown</option>
+    <option value="@HeadbadgeMaterial.Decal">@de.strewi.database.Resources.EnumNames.Decal</option>
+    <option value="@HeadbadgeMaterial.Etching">@de.strewi.database.Resources.EnumNames.Etching</option>
+    <option value="@HeadbadgeMaterial.Brass">@de.strewi.database.Resources.EnumNames.Brass</option>
+    <option value="@HeadbadgeMaterial.Alloy">@de.strewi.database.Resources.EnumNames.Alloy</option>
+    <option value="@HeadbadgeMaterial.ZincDieCast">@de.strewi.database.Resources.EnumNames.ZincDieCast</option>
+</select>
