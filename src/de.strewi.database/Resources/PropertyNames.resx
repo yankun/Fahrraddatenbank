@@ -120,6 +120,18 @@
   <data name="City" xml:space="preserve">
     <value>Stadt</value>
   </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Bestätigung</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Estimate" xml:space="preserve">
+    <value>Ungefähres Jahr</value>
+  </data>
+  <data name="Firstname" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
   <data name="FoundedAt" xml:space="preserve">
     <value>Beginn der Produktion</value>
   </data>
@@ -132,8 +144,14 @@
   <data name="HorizontalDistance" xml:space="preserve">
     <value>Horizontaler Abstand</value>
   </data>
+  <data name="Lastname" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
   <data name="ManufacturerId" xml:space="preserve">
     <value>Hersteller</value>
+  </data>
+  <data name="MemberNumber" xml:space="preserve">
+    <value>Mitgliedsnummer</value>
   </data>
   <data name="MountingPoints" xml:space="preserve">
     <value>Befestigung</value>
@@ -153,17 +171,20 @@
   <data name="OvertakenById" xml:space="preserve">
     <value>Übernommen durch</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
   <data name="StoppedProductionAt" xml:space="preserve">
     <value>Ende der Produktion</value>
-  </data>
-  <data name="TimePeriod" xml:space="preserve">
-    <value>Zeitspanne</value>
   </data>
   <data name="UploadImage" xml:space="preserve">
     <value>Bild</value>
   </data>
   <data name="UsedColors" xml:space="preserve">
     <value>Verwendete Farben</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Benutzername</value>
   </data>
   <data name="ValidFrom" xml:space="preserve">
     <value>Verwendet von</value>

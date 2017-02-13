@@ -13,16 +13,25 @@ namespace de.strewi.web.Models.AccountViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.")]
+        [Required]
+        [StringLength(100, ErrorMessageResourceName = "MinMaxLength", ErrorMessageResourceType = typeof(Resources.ErrorMessages))]
+        [Display(Name = nameof(Username), ResourceType = typeof(Resources.PropertyNames))]
+        public string Username { get; set; }
+
+        [Required]
+        [Display(Name = nameof(MemberNumber), ResourceType = typeof(Resources.PropertyNames))]
+        public int MemberNumber { get; set; }
+
+        [StringLength(100, ErrorMessageResourceName = "MinMaxLength", ErrorMessageResourceType = typeof(Resources.ErrorMessages))]
         [Display(Name = nameof(Firstname), ResourceType = typeof(Resources.PropertyNames))]
         public string Firstname { get; set; }
 
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.")]
+        [StringLength(100, ErrorMessageResourceName = "MinMaxLength", ErrorMessageResourceType = typeof(Resources.ErrorMessages))]
         [Display(Name = nameof(Lastname), ResourceType = typeof(Resources.PropertyNames))]
         public string Lastname { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [StringLength(100, MinimumLength = 8, ErrorMessageResourceName = "MinMaxLength", ErrorMessageResourceType = typeof(Resources.ErrorMessages))]
         [DataType(DataType.Password)]
         [Display(Name = nameof(Password), ResourceType = typeof(Resources.PropertyNames))]
         public string Password { get; set; }

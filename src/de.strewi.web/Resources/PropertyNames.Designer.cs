@@ -103,5 +103,14 @@ namespace de.strewi.web.Resources {
                 return ResourceManager.GetString("Password", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Benutzername.
+        /// </summary>
+        public static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
+            }
+        }
     }
 }

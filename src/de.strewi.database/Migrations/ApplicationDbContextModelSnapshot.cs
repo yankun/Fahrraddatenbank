@@ -19,8 +19,9 @@ namespace de.strewi.database.Migrations
 
             modelBuilder.Entity("de.strewi.database.Models.ApplicationUser", b =>
                 {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:DefaultValueSql", "newsequentialid()");
 
                     b.Property<int>("AccessFailedCount");
 
@@ -82,14 +83,15 @@ namespace de.strewi.database.Migrations
 
             modelBuilder.Entity("de.strewi.database.Models.BearingShell", b =>
                 {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:DefaultValueSql", "newsequentialid()");
 
                     b.Property<double>("CrankHoleDiameter");
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedByID");
+                    b.Property<Guid?>("CreatedByID");
 
                     b.Property<double>("Depth");
 
@@ -105,7 +107,7 @@ namespace de.strewi.database.Migrations
 
                     b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<string>("ModifiedByID");
+                    b.Property<Guid?>("ModifiedByID");
 
                     b.Property<double>("OuterDiamteter");
 
@@ -113,13 +115,13 @@ namespace de.strewi.database.Migrations
 
                     b.Property<int>("Side");
 
-                    b.Property<string>("TimePeriod");
+                    b.Property<string>("UsedAt");
 
-                    b.Property<int>("ValidFrom");
+                    b.Property<int?>("UsedAtValidFrom");
 
-                    b.Property<int>("ValidTo");
+                    b.Property<int?>("UsedAtValidTo");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("CreatedByID");
 
@@ -132,12 +134,13 @@ namespace de.strewi.database.Migrations
 
             modelBuilder.Entity("de.strewi.database.Models.CrankAxle", b =>
                 {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:DefaultValueSql", "newsequentialid()");
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedByID");
+                    b.Property<Guid?>("CreatedByID");
 
                     b.Property<Guid>("ManufacturerId");
 
@@ -145,21 +148,21 @@ namespace de.strewi.database.Migrations
 
                     b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<string>("ModifiedByID");
+                    b.Property<Guid?>("ModifiedByID");
 
                     b.Property<double>("ThreadDiameter");
 
                     b.Property<int>("ThreadPitch");
 
-                    b.Property<string>("TimePeriod");
+                    b.Property<string>("UsedAt");
 
-                    b.Property<int>("ValidFrom");
+                    b.Property<int?>("UsedAtValidFrom");
 
-                    b.Property<int>("ValidTo");
+                    b.Property<int?>("UsedAtValidTo");
 
                     b.Property<double>("Width");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("CreatedByID");
 
@@ -170,14 +173,53 @@ namespace de.strewi.database.Migrations
                     b.ToTable("CrankAxles");
                 });
 
-            modelBuilder.Entity("de.strewi.database.Models.HeadBadge", b =>
+            modelBuilder.Entity("de.strewi.database.Models.Framenumber", b =>
                 {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:DefaultValueSql", "newsequentialid()");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(3000);
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedByID");
+                    b.Property<Guid?>("CreatedByID");
+
+                    b.Property<Guid>("ManufacturerId");
+
+                    b.Property<int>("ModerationState");
+
+                    b.Property<DateTime?>("ModifiedAt");
+
+                    b.Property<Guid?>("ModifiedByID");
+
+                    b.Property<int>("Number");
+
+                    b.Property<int>("ProvenBy");
+
+                    b.Property<int>("Year");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedByID");
+
+                    b.HasIndex("ManufacturerId");
+
+                    b.HasIndex("ModifiedByID");
+
+                    b.ToTable("Framenumbers");
+                });
+
+            modelBuilder.Entity("de.strewi.database.Models.HeadBadge", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:DefaultValueSql", "newsequentialid()");
+
+                    b.Property<DateTime>("CreatedAt");
+
+                    b.Property<Guid?>("CreatedByID");
 
                     b.Property<int>("HeadbadgeMaterial");
 
@@ -191,7 +233,7 @@ namespace de.strewi.database.Migrations
 
                     b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<string>("ModifiedByID");
+                    b.Property<Guid?>("ModifiedByID");
 
                     b.Property<int>("MountingPoints");
 
@@ -200,17 +242,17 @@ namespace de.strewi.database.Migrations
 
                     b.Property<int?>("NumberOfMountingPoints");
 
-                    b.Property<string>("TimePeriod");
+                    b.Property<string>("UsedAt");
+
+                    b.Property<int?>("UsedAtValidFrom");
+
+                    b.Property<int?>("UsedAtValidTo");
 
                     b.Property<string>("UsedColors");
 
-                    b.Property<int>("ValidFrom");
-
-                    b.Property<int>("ValidTo");
-
                     b.Property<double?>("VerticalDistance");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("CreatedByID");
 
@@ -223,17 +265,22 @@ namespace de.strewi.database.Migrations
 
             modelBuilder.Entity("de.strewi.database.Models.Manufacturer", b =>
                 {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:DefaultValueSql", "newsequentialid()");
 
                     b.Property<string>("City")
                         .HasMaxLength(255);
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedByID");
+                    b.Property<Guid?>("CreatedByID");
 
-                    b.Property<DateTime>("FoundedAt");
+                    b.Property<string>("FoundedAt");
+
+                    b.Property<int?>("FoundedAtValidFrom");
+
+                    b.Property<int?>("FoundedAtValidTo");
 
                     b.Property<string>("History")
                         .HasColumnType("ntext");
@@ -242,19 +289,29 @@ namespace de.strewi.database.Migrations
 
                     b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<string>("ModifiedByID");
+                    b.Property<Guid?>("ModifiedByID");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(255);
 
-                    b.Property<DateTime?>("OvertakenAt");
+                    b.Property<string>("OvertakenAt");
+
+                    b.Property<int?>("OvertakenAtValidFrom");
+
+                    b.Property<int?>("OvertakenAtValidTo");
 
                     b.Property<Guid?>("OvertakenById");
 
-                    b.Property<DateTime>("StoppedProductionAt");
+                    b.Property<string>("StoppedProductionAt");
 
-                    b.HasKey("ID");
+                    b.Property<int?>("StoppedProductionAtValidFrom");
+
+                    b.Property<int?>("StoppedProductionAtValidTo");
+
+                    b.Property<int>("Type");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("CreatedByID");
 
@@ -267,8 +324,9 @@ namespace de.strewi.database.Migrations
 
             modelBuilder.Entity("de.strewi.database.Models.ModerationItem", b =>
                 {
-                    b.Property<Guid>("ID")
-                        .ValueGeneratedOnAdd();
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:DefaultValueSql", "newsequentialid()");
 
                     b.Property<string>("Action");
 
@@ -276,21 +334,19 @@ namespace de.strewi.database.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("CreatedByID");
-
-                    b.Property<Guid>("Id");
+                    b.Property<Guid?>("CreatedByID");
 
                     b.Property<int>("ModerationState");
 
                     b.Property<DateTime?>("ModifiedAt");
 
-                    b.Property<string>("ModifiedByID");
+                    b.Property<Guid?>("ModifiedByID");
 
                     b.Property<string>("Name");
 
                     b.Property<string>("Reason");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("CreatedByID");
 
@@ -299,25 +355,11 @@ namespace de.strewi.database.Migrations
                     b.ToTable("ModerationQueue");
                 });
 
-            modelBuilder.Entity("de.strewi.database.Models.ValueChange", b =>
+            modelBuilder.Entity("de.strewi.database.Models.Role", b =>
                 {
                     b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("NewValue");
-
-                    b.Property<string>("PropertyName")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ValueChanges");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:DefaultValueSql", "newsequentialid()");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -337,7 +379,26 @@ namespace de.strewi.database.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("de.strewi.database.Models.ValueChange", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:DefaultValueSql", "newsequentialid()");
+
+                    b.Property<string>("EntityName")
+                        .IsRequired();
+
+                    b.Property<string>("NewValue");
+
+                    b.Property<string>("PropertyName")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ValueChanges");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -346,8 +407,7 @@ namespace de.strewi.database.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("RoleId")
-                        .IsRequired();
+                    b.Property<Guid>("RoleId");
 
                     b.HasKey("Id");
 
@@ -356,7 +416,7 @@ namespace de.strewi.database.Migrations
                     b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<System.Guid>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -365,8 +425,7 @@ namespace de.strewi.database.Migrations
 
                     b.Property<string>("ClaimValue");
 
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("Id");
 
@@ -375,7 +434,7 @@ namespace de.strewi.database.Migrations
                     b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.Property<string>("LoginProvider");
 
@@ -383,8 +442,7 @@ namespace de.strewi.database.Migrations
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<string>("UserId")
-                        .IsRequired();
+                    b.Property<Guid>("UserId");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -393,11 +451,11 @@ namespace de.strewi.database.Migrations
                     b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.Property<string>("UserId");
+                    b.Property<Guid>("UserId");
 
-                    b.Property<string>("RoleId");
+                    b.Property<Guid>("RoleId");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -406,9 +464,9 @@ namespace de.strewi.database.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<System.Guid>", b =>
                 {
-                    b.Property<string>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.Property<string>("LoginProvider");
 
@@ -438,6 +496,22 @@ namespace de.strewi.database.Migrations
                 });
 
             modelBuilder.Entity("de.strewi.database.Models.CrankAxle", b =>
+                {
+                    b.HasOne("de.strewi.database.Models.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedByID");
+
+                    b.HasOne("de.strewi.database.Models.Manufacturer", "Manufacturer")
+                        .WithMany()
+                        .HasForeignKey("ManufacturerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("de.strewi.database.Models.ApplicationUser", "ModifiedBy")
+                        .WithMany()
+                        .HasForeignKey("ModifiedByID");
+                });
+
+            modelBuilder.Entity("de.strewi.database.Models.Framenumber", b =>
                 {
                     b.HasOne("de.strewi.database.Models.ApplicationUser", "CreatedBy")
                         .WithMany()
@@ -495,15 +569,15 @@ namespace de.strewi.database.Migrations
                         .HasForeignKey("ModifiedByID");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<System.Guid>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
+                    b.HasOne("de.strewi.database.Models.Role")
                         .WithMany("Claims")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<System.Guid>", b =>
                 {
                     b.HasOne("de.strewi.database.Models.ApplicationUser")
                         .WithMany("Claims")
@@ -511,7 +585,7 @@ namespace de.strewi.database.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<System.Guid>", b =>
                 {
                     b.HasOne("de.strewi.database.Models.ApplicationUser")
                         .WithMany("Logins")
@@ -519,9 +593,9 @@ namespace de.strewi.database.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<System.Guid>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
+                    b.HasOne("de.strewi.database.Models.Role")
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);

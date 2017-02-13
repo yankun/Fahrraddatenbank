@@ -58,5 +58,14 @@ namespace de.strewi.web.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Das Feld {0} muss zwischen {2} und {1} Zeichen lang sein..
+        /// </summary>
+        public static string MinMaxLength {
+            get {
+                return ResourceManager.GetString("MinMaxLength", resourceCulture);
+            }
+        }
     }
 }

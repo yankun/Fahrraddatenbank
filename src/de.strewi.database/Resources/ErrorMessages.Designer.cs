@@ -69,6 +69,15 @@ namespace de.strewi.database.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Das Feld {0} muss zwischen {2} und {1} Zeichen lang sein..
+        /// </summary>
+        public static string MinMaxLength {
+            get {
+                return ResourceManager.GetString("MinMaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Hinweise dürfen maximal {0} Zeichen lang sein..
         /// </summary>
         public static string NotesErrorMessage {

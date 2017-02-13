@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace de.strewi.database.Models
 {
-    public class HeadBadge : BaseTimePeriodModel, IManufactureRelatedItem
+    public class HeadBadge : BaseModel, IManufactureRelatedItem
     {
+        private string usedAt;
+
 		public string Image { get; set; }
 
 		[Display(Name = nameof(HorizontalDistance), ResourceType = typeof(Resources.PropertyNames))]
@@ -39,5 +41,26 @@ namespace de.strewi.database.Models
 
         [Display(Name = nameof(ManufacturerId), ResourceType = typeof(Resources.PropertyNames))]
         public Guid ManufacturerId { get; set; }
+
+        public string UsedAt
+        {
+            get
+            {
+                return usedAt;
+            }
+            set
+            {
+                int? validFrom, validTo;
+
+                TimeEstimateParser.ParseTimeEstimate(value, out validFrom, out validTo);
+
+                UsedAtValidFrom = validFrom;
+                UsedAtValidTo = validTo;
+                usedAt = value;
+            }
+        }
+
+        public int? UsedAtValidFrom { get; private set; }
+        public int? UsedAtValidTo { get; private set; }
     }
 }

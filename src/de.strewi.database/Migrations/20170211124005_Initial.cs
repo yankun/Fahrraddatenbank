@@ -13,7 +13,7 @@ namespace de.strewi.database.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
@@ -41,23 +41,10 @@ namespace de.strewi.database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ValueChanges",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    NewValue = table.Column<string>(nullable: true),
-                    PropertyName = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ValueChanges", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Name = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
@@ -68,10 +55,24 @@ namespace de.strewi.database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ValueChanges",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
+                    EntityName = table.Column<string>(nullable: false),
+                    NewValue = table.Column<string>(nullable: true),
+                    PropertyName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ValueChanges", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
+                    UserId = table.Column<Guid>(nullable: false),
                     LoginProvider = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
@@ -85,23 +86,30 @@ namespace de.strewi.database.Migrations
                 name: "Manufactures",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
                     City = table.Column<string>(maxLength: 255, nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    CreatedByID = table.Column<string>(nullable: true),
-                    FoundedAt = table.Column<DateTime>(nullable: false),
+                    CreatedByID = table.Column<Guid>(nullable: true),
+                    FoundedAt = table.Column<string>(nullable: true),
+                    FoundedAtValidFrom = table.Column<int>(nullable: true),
+                    FoundedAtValidTo = table.Column<int>(nullable: true),
                     History = table.Column<string>(type: "ntext", nullable: true),
                     ModerationState = table.Column<int>(nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: true),
-                    ModifiedByID = table.Column<string>(nullable: true),
+                    ModifiedByID = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(maxLength: 255, nullable: false),
-                    OvertakenAt = table.Column<DateTime>(nullable: true),
+                    OvertakenAt = table.Column<string>(nullable: true),
+                    OvertakenAtValidFrom = table.Column<int>(nullable: true),
+                    OvertakenAtValidTo = table.Column<int>(nullable: true),
                     OvertakenById = table.Column<Guid>(nullable: true),
-                    StoppedProductionAt = table.Column<DateTime>(nullable: false)
+                    StoppedProductionAt = table.Column<string>(nullable: true),
+                    StoppedProductionAtValidFrom = table.Column<int>(nullable: true),
+                    StoppedProductionAtValidTo = table.Column<int>(nullable: true),
+                    Type = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Manufactures", x => x.ID);
+                    table.PrimaryKey("PK_Manufactures", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Manufactures_AspNetUsers_CreatedByID",
                         column: x => x.CreatedByID,
@@ -118,7 +126,7 @@ namespace de.strewi.database.Migrations
                         name: "FK_Manufactures_Manufactures_OvertakenById",
                         column: x => x.OvertakenById,
                         principalTable: "Manufactures",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -126,21 +134,20 @@ namespace de.strewi.database.Migrations
                 name: "ModerationQueue",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
                     Action = table.Column<string>(nullable: true),
                     Controller = table.Column<string>(nullable: true),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    CreatedByID = table.Column<string>(nullable: true),
-                    Id = table.Column<Guid>(nullable: false),
+                    CreatedByID = table.Column<Guid>(nullable: true),
                     ModerationState = table.Column<int>(nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: true),
-                    ModifiedByID = table.Column<string>(nullable: true),
+                    ModifiedByID = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Reason = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ModerationQueue", x => x.ID);
+                    table.PrimaryKey("PK_ModerationQueue", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ModerationQueue_AspNetUsers_CreatedByID",
                         column: x => x.CreatedByID,
@@ -163,7 +170,7 @@ namespace de.strewi.database.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -183,7 +190,7 @@ namespace de.strewi.database.Migrations
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    UserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -204,7 +211,7 @@ namespace de.strewi.database.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true),
-                    RoleId = table.Column<string>(nullable: false)
+                    RoleId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -221,8 +228,8 @@ namespace de.strewi.database.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
-                    RoleId = table.Column<string>(nullable: false)
+                    UserId = table.Column<Guid>(nullable: false),
+                    RoleId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -245,10 +252,10 @@ namespace de.strewi.database.Migrations
                 name: "BearingShells",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
                     CrankHoleDiameter = table.Column<double>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    CreatedByID = table.Column<string>(nullable: true),
+                    CreatedByID = table.Column<Guid>(nullable: true),
                     Depth = table.Column<double>(nullable: false),
                     Image = table.Column<string>(nullable: true),
                     InnerDiameter = table.Column<double>(nullable: false),
@@ -256,17 +263,17 @@ namespace de.strewi.database.Migrations
                     ManufacturerId = table.Column<Guid>(nullable: false),
                     ModerationState = table.Column<int>(nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: true),
-                    ModifiedByID = table.Column<string>(nullable: true),
+                    ModifiedByID = table.Column<Guid>(nullable: true),
                     OuterDiamteter = table.Column<double>(nullable: false),
                     Position = table.Column<int>(nullable: false),
                     Side = table.Column<int>(nullable: false),
-                    TimePeriod = table.Column<string>(nullable: true),
-                    ValidFrom = table.Column<int>(nullable: false),
-                    ValidTo = table.Column<int>(nullable: false)
+                    UsedAt = table.Column<string>(nullable: true),
+                    UsedAtValidFrom = table.Column<int>(nullable: true),
+                    UsedAtValidTo = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BearingShells", x => x.ID);
+                    table.PrimaryKey("PK_BearingShells", x => x.Id);
                     table.ForeignKey(
                         name: "FK_BearingShells_AspNetUsers_CreatedByID",
                         column: x => x.CreatedByID,
@@ -277,7 +284,7 @@ namespace de.strewi.database.Migrations
                         name: "FK_BearingShells_Manufactures_ManufacturerId",
                         column: x => x.ManufacturerId,
                         principalTable: "Manufactures",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BearingShells_AspNetUsers_ModifiedByID",
@@ -291,23 +298,23 @@ namespace de.strewi.database.Migrations
                 name: "CrankAxles",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    CreatedByID = table.Column<string>(nullable: true),
+                    CreatedByID = table.Column<Guid>(nullable: true),
                     ManufacturerId = table.Column<Guid>(nullable: false),
                     ModerationState = table.Column<int>(nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: true),
-                    ModifiedByID = table.Column<string>(nullable: true),
+                    ModifiedByID = table.Column<Guid>(nullable: true),
                     ThreadDiameter = table.Column<double>(nullable: false),
                     ThreadPitch = table.Column<int>(nullable: false),
-                    TimePeriod = table.Column<string>(nullable: true),
-                    ValidFrom = table.Column<int>(nullable: false),
-                    ValidTo = table.Column<int>(nullable: false),
+                    UsedAt = table.Column<string>(nullable: true),
+                    UsedAtValidFrom = table.Column<int>(nullable: true),
+                    UsedAtValidTo = table.Column<int>(nullable: true),
                     Width = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CrankAxles", x => x.ID);
+                    table.PrimaryKey("PK_CrankAxles", x => x.Id);
                     table.ForeignKey(
                         name: "FK_CrankAxles_AspNetUsers_CreatedByID",
                         column: x => x.CreatedByID,
@@ -318,7 +325,7 @@ namespace de.strewi.database.Migrations
                         name: "FK_CrankAxles_Manufactures_ManufacturerId",
                         column: x => x.ManufacturerId,
                         principalTable: "Manufactures",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_CrankAxles_AspNetUsers_ModifiedByID",
@@ -329,31 +336,70 @@ namespace de.strewi.database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Framenumbers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
+                    Comment = table.Column<string>(maxLength: 3000, nullable: true),
+                    CreatedAt = table.Column<DateTime>(nullable: false),
+                    CreatedByID = table.Column<Guid>(nullable: true),
+                    ManufacturerId = table.Column<Guid>(nullable: false),
+                    ModerationState = table.Column<int>(nullable: false),
+                    ModifiedAt = table.Column<DateTime>(nullable: true),
+                    ModifiedByID = table.Column<Guid>(nullable: true),
+                    Number = table.Column<int>(nullable: false),
+                    ProvenBy = table.Column<int>(nullable: false),
+                    Year = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Framenumbers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Framenumbers_AspNetUsers_CreatedByID",
+                        column: x => x.CreatedByID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Framenumbers_Manufactures_ManufacturerId",
+                        column: x => x.ManufacturerId,
+                        principalTable: "Manufactures",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Framenumbers_AspNetUsers_ModifiedByID",
+                        column: x => x.ModifiedByID,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Headbadges",
                 columns: table => new
                 {
-                    ID = table.Column<Guid>(nullable: false),
+                    Id = table.Column<Guid>(nullable: false, defaultValueSql: "newsequentialid()"),
                     CreatedAt = table.Column<DateTime>(nullable: false),
-                    CreatedByID = table.Column<string>(nullable: true),
+                    CreatedByID = table.Column<Guid>(nullable: true),
                     HeadbadgeMaterial = table.Column<int>(nullable: false),
                     HorizontalDistance = table.Column<double>(nullable: true),
                     Image = table.Column<string>(nullable: true),
                     ManufacturerId = table.Column<Guid>(nullable: false),
                     ModerationState = table.Column<int>(nullable: false),
                     ModifiedAt = table.Column<DateTime>(nullable: true),
-                    ModifiedByID = table.Column<string>(nullable: true),
+                    ModifiedByID = table.Column<Guid>(nullable: true),
                     MountingPoints = table.Column<int>(nullable: false),
                     Notes = table.Column<string>(maxLength: 500, nullable: true),
                     NumberOfMountingPoints = table.Column<int>(nullable: true),
-                    TimePeriod = table.Column<string>(nullable: true),
+                    UsedAt = table.Column<string>(nullable: true),
+                    UsedAtValidFrom = table.Column<int>(nullable: true),
+                    UsedAtValidTo = table.Column<int>(nullable: true),
                     UsedColors = table.Column<string>(nullable: true),
-                    ValidFrom = table.Column<int>(nullable: false),
-                    ValidTo = table.Column<int>(nullable: false),
                     VerticalDistance = table.Column<double>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Headbadges", x => x.ID);
+                    table.PrimaryKey("PK_Headbadges", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Headbadges_AspNetUsers_CreatedByID",
                         column: x => x.CreatedByID,
@@ -364,7 +410,7 @@ namespace de.strewi.database.Migrations
                         name: "FK_Headbadges_Manufactures_ManufacturerId",
                         column: x => x.ManufacturerId,
                         principalTable: "Manufactures",
-                        principalColumn: "ID",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Headbadges_AspNetUsers_ModifiedByID",
@@ -413,6 +459,21 @@ namespace de.strewi.database.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_CrankAxles_ModifiedByID",
                 table: "CrankAxles",
+                column: "ModifiedByID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Framenumbers_CreatedByID",
+                table: "Framenumbers",
+                column: "CreatedByID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Framenumbers_ManufacturerId",
+                table: "Framenumbers",
+                column: "ManufacturerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Framenumbers_ModifiedByID",
+                table: "Framenumbers",
                 column: "ModifiedByID");
 
             migrationBuilder.CreateIndex(
@@ -489,6 +550,9 @@ namespace de.strewi.database.Migrations
 
             migrationBuilder.DropTable(
                 name: "CrankAxles");
+
+            migrationBuilder.DropTable(
+                name: "Framenumbers");
 
             migrationBuilder.DropTable(
                 name: "Headbadges");

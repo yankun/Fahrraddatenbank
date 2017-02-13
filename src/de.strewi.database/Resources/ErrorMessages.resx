@@ -120,6 +120,9 @@
   <data name="GenericLengthError" xml:space="preserve">
     <value>Das Feld das maximal {0} Zeichen enthalten.</value>
   </data>
+  <data name="MinMaxLength" xml:space="preserve">
+    <value>Das Feld {0} muss zwischen {2} und {1} Zeichen lang sein.</value>
+  </data>
   <data name="NotesErrorMessage" xml:space="preserve">
     <value>Hinweise dürfen maximal {0} Zeichen lang sein.</value>
   </data>

@@ -17,6 +17,9 @@ namespace de.strewi.database.Models
         public string NewValue { get; set; }
 
         [Required]
+        public string EntityName { get; set; }
+
+        [Required]
         public Guid ItemId;
 
         [Required]

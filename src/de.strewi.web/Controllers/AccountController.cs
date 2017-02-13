@@ -53,9 +53,11 @@ namespace de.strewi.web.Controllers
 		{
 			ViewData["ReturnUrl"] = returnUrl;
 			if (ModelState.IsValid) {
-				// This doesn't count login failures towards account lockout
-				// To enable password failures to trigger account lockout, set lockoutOnFailure: true
-				var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                // This doesn't count login failures towards account lockout
+                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+
+                var user = await _userManager.FindByEmailAsync(model.Email);
+				var result = await _signInManager.PasswordSignInAsync(user.UserName, model.Password, model.RememberMe, lockoutOnFailure: false);
 				if (result.Succeeded) {
 					_logger.LogInformation(1, "User logged in.");
 					return RedirectToLocal(returnUrl);
@@ -95,7 +97,13 @@ namespace de.strewi.web.Controllers
 		{
 			ViewData["ReturnUrl"] = returnUrl;
 			if (ModelState.IsValid) {
-				var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+				var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    MemberNumber = model.MemberNumber,
+                    Firstname = model.Firstname,
+                    Lastname = model.Lastname
+                };
 				var result = await _userManager.CreateAsync(user, model.Password);
 				if (result.Succeeded) {
 					// For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713

@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace de.strewi.database.Models
 {
-	public class CrankAxle : BaseTimePeriodModel, IManufactureRelatedItem
+	public class CrankAxle : BaseModel, IManufactureRelatedItem
 	{
+        private string usedAt;
+
 		public double Width { get; set; }
 		public double ThreadDiameter { get; set; }
 		public int ThreadPitch { get; set; }
@@ -18,5 +20,25 @@ namespace de.strewi.database.Models
 
         [Display(Name = nameof(ManufacturerId), ResourceType = typeof(Resources.PropertyNames))]
         public Guid ManufacturerId { get; set; }
+
+        public string UsedAt
+        {
+            get
+            {
+                return usedAt;
+            }
+            set
+            {
+                int? validFrom, validTo;
+
+                TimeEstimateParser.ParseTimeEstimate(value, out validFrom, out validTo);
+
+                UsedAtValidFrom = validFrom;
+                UsedAtValidTo = validTo;
+            }
+        }
+
+        public int? UsedAtValidFrom { get; private set; }
+        public int? UsedAtValidTo { get; private set; }
     }
 }

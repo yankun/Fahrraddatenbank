@@ -10,13 +10,13 @@ namespace de.strewi.database.Models
 	public abstract class BaseModel
 	{
 		[Key]
-		public Guid ID { get; set; }
+		public Guid Id { get; set; }
 		public DateTime CreatedAt { get; set; }
-		public string CreatedByID { get; set; }
+		public Guid? CreatedByID { get; set; }
 		[ForeignKey(nameof(CreatedByID))]
 		public virtual ApplicationUser CreatedBy { get; set; }
 		public DateTime? ModifiedAt { get; set; }
-		public string ModifiedByID { get; set; }
+		public Guid? ModifiedByID { get; set; }
 		[ForeignKey(nameof(ModifiedByID))]
 		public virtual ApplicationUser ModifiedBy { get; set; }
 

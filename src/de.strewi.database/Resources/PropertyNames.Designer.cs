@@ -69,6 +69,42 @@ namespace de.strewi.database.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Bestätigung.
+        /// </summary>
+        public static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Ungefähres Jahr.
+        /// </summary>
+        public static string Estimate {
+            get {
+                return ResourceManager.GetString("Estimate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Vorname.
+        /// </summary>
+        public static string Firstname {
+            get {
+                return ResourceManager.GetString("Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Beginn der Produktion.
         /// </summary>
         public static string FoundedAt {
@@ -105,11 +141,29 @@ namespace de.strewi.database.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Nachname.
+        /// </summary>
+        public static string Lastname {
+            get {
+                return ResourceManager.GetString("Lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Hersteller.
         /// </summary>
         public static string ManufacturerId {
             get {
                 return ResourceManager.GetString("ManufacturerId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Mitgliedsnummer.
+        /// </summary>
+        public static string MemberNumber {
+            get {
+                return ResourceManager.GetString("MemberNumber", resourceCulture);
             }
         }
         
@@ -168,20 +222,20 @@ namespace de.strewi.database.Resources {
         }
         
         /// <summary>
+        ///    Looks up a localized string similar to Passwort.
+        /// </summary>
+        public static string Password {
+            get {
+                return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///    Looks up a localized string similar to Ende der Produktion.
         /// </summary>
         public static string StoppedProductionAt {
             get {
                 return ResourceManager.GetString("StoppedProductionAt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///    Looks up a localized string similar to Zeitspanne.
-        /// </summary>
-        public static string TimePeriod {
-            get {
-                return ResourceManager.GetString("TimePeriod", resourceCulture);
             }
         }
         
@@ -200,6 +254,15 @@ namespace de.strewi.database.Resources {
         public static string UsedColors {
             get {
                 return ResourceManager.GetString("UsedColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///    Looks up a localized string similar to Benutzername.
+        /// </summary>
+        public static string Username {
+            get {
+                return ResourceManager.GetString("Username", resourceCulture);
             }
         }
         

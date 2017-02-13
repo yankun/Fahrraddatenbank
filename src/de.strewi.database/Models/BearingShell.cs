@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace de.strewi.database.Models
 {
-	public class BearingShell : BaseTimePeriodModel, IManufactureRelatedItem
+	public class BearingShell : BaseModel, IManufactureRelatedItem
 	{
+        private string usedAt;
+
 		public string Image { get; set; }
 		public double Depth { get; set; }
 		public double OuterDiamteter { get; set; }
@@ -17,6 +19,26 @@ namespace de.strewi.database.Models
 		public Side Side { get; set; }
 		public BearingShellPosition Position { get; set; }
 		public bool IsThreaded { get; set; }
+        public string UsedAt
+        {
+            get
+            {
+                return usedAt;
+            }
+            set
+            {
+                int? validFrom, validTo;
+         
+                TimeEstimateParser.ParseTimeEstimate(value, out validFrom, out validTo);
+
+                UsedAtValidFrom = validFrom;
+                UsedAtValidTo = validTo;
+                usedAt = value;
+            }
+        }
+
+        public int? UsedAtValidFrom { get; private set; }
+        public int? UsedAtValidTo { get; private set; }
 
         [ForeignKey(nameof(ManufacturerId))]
         public virtual Manufacturer Manufacturer { get; set; }
